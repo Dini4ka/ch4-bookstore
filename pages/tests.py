@@ -1,7 +1,7 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 
-from .views import HomePageView
+from .views import HomePageView, AboutPageView
 
 
 class HomePageTest(SimpleTestCase):
@@ -25,4 +25,25 @@ class HomePageTest(SimpleTestCase):
         view = resolve('/')
         self.assertEqual(view.func, HomePageView.as_view())
 
+
+class AboutPageTest(SimpleTestCase):
+    def SetUp(self):
+        url = reverse('about')
+        self.response = self.client.get(url)
+
+    def test_aboutpage_status_code(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_aboutpage_template(self):
+        self.assertTemplateUsed(self.response, 'about.html')
+
+    def test_aboutpage_contains_correct_html(self):
+        self.assertContains(self.response, 'About page')
+
+    def test_aboutpage_does_not_contain_incorrect_html(self):
+        self.assertNotContains(self.response, 'not about')
+
+    def test_aboutpage_resolves_about_page_view(self):
+        view = resolve('/about')
+        self.assertEqual(view.func, AboutPageView.as_view())
 
