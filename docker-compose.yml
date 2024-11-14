@@ -6,6 +6,11 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
         - .:/code
+    depends_on:
+      - db
+    environment:
+      - "DJANGO_SECRET_KEY=django-insecure-kwjo)d8y=3i$4nmjd6ah6jjd10%65=6j(by2qph4xx1kd-r9%!"
+      - "DJANGO_DEBUG=True"
   db:
     image: postgres:15
     volumes:
