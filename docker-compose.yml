@@ -2,21 +2,21 @@ services:
   web:
     build: .
     ports:
-        - "8000:8000"
+      - "8000:8000"
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-        - .:/code
+      - .:/code
     depends_on:
       - db
     environment:
-      - "DJANGO_SECRET_KEY=django-insecure-kwjo)d8y=3i$4nmjd6ah6jjd10%65=6j(by2qph4xx1kd-r9%!"
-      - "DJANGO_DEBUG=True"
+      - DJANGO_SECRET_KEY=django-insecure-kwjo)d8y=3i$4nmjd6ah6jjd10%65=6j(by2qph4xx1kd-r9%
+      - DJANGO_DEBUG=True  # Good practice to set this during development.
   db:
     image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
-
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      
 volumes:
   postgres_data:
