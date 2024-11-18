@@ -3,4 +3,5 @@ from django.db import models
 
 
 class CustomUser(AbstractUser):
+    usable_password = models.BooleanField(default=True)
     pass
