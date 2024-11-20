@@ -15,14 +15,16 @@ class Book(models.Model):
     price = models.IntegerField()
     cover = models.ImageField(upload_to='covers/', blank=True)
 
+    class Meta:
+        permissions = [
+            ("special_status", "Can read all books")
+        ]
+
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse("book_detail", args=[str(self.id)])
-
-
-
 
 
 class Review(models.Model):
