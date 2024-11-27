@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Third-party
+    "daphne",
     "crispy_forms",
     "crispy_bootstrap5",
     "allauth",
@@ -62,6 +63,7 @@ INSTALLED_APPS = [
 ]
 
 DEFAULT_FROM_EMAIL = "admin@djangobookstore.com"
+ASGI_APPLICATION = 'django_project.asgi.application'
 
 # django-allauth config
 LOGIN_REDIRECT_URL = 'home'
